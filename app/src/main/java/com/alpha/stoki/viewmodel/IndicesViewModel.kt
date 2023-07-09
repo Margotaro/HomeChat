@@ -3,25 +3,36 @@ package com.alpha.stoki.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alpha.stoki.model.IndiceData
 import com.alpha.stoki.network.IndicesRepository
-import com.alpha.stoki.network.gson_objects.TickerResponse
 import kotlinx.coroutines.launch
+import com.alpha.stoki.data.API_KEY
 
-class IndicesViewModel(private val repository: IndicesRepository) : ViewModel() {
-    private val indices: MutableLiveData<List<TickerResponse>?> = MutableLiveData()
 
+class IndicesViewModel : ViewModel() {
+    private val _indices: MutableLiveData<List<IndiceData>> = MutableLiveData()
+    private val repository: IndicesRepository = IndicesRepository()
+    val indices: MutableLiveData<List<IndiceData>>
+        get() {
+            if(!_indices.isInitialized)
+                updateIndices()
+            return _indices
+        }
     init {
         viewModelScope.launch {
-            indices.value = repository.getIndiceRating()
+            val result = repository.getAllTickers(API_KEY, "indices")
+            _indices.postValue(result.results)
         }
     }
 
-    suspend fun fetchIndices() {
-        try {
-            val result = repository.getIndiceRating()
-            indices.postValue(result)
-        } catch (error: Throwable) {
-            throw GetIndicesError("Unable to retrieve indices", error)
+    private fun updateIndices() {
+        viewModelScope.launch {
+            try {
+                val result = repository.getAllTickers(API_KEY, "indices")
+                _indices.postValue(result.results)
+            } catch (error: Throwable) {
+                throw GetIndicesError(error.message.toString(), error)
+            }
         }
     }
 }

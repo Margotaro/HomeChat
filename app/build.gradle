@@ -1,11 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
     namespace 'com.alpha.stoki'
-    compileSdk 33
+    compileSdk 34
 
     buildFeatures {
         compose = true
@@ -14,22 +16,22 @@ android {
     defaultConfig {
         applicationId "com.alpha.stoki"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.1"
+        kotlinCompilerExtensionVersion = "1.4.6"
     }
 }
 
@@ -41,10 +43,12 @@ ext {
     //Views
     composeVersion = "1.1.0"
     //Rest
-    retrofit = "2.9.0"
-    gson = "2.9.0"
+    retrofitVersion = "2.9.0"
+    gsonVersion = "2.9.0"
     //ViewModel
-    viewModel = "2.5.1"
+    viewModelVersion = "2.5.1"
+    //dagger
+    hiltVersion = "2.46.1"
 }
 
 dependencies {
@@ -53,10 +57,19 @@ dependencies {
     implementation "androidx.activity:activity-compose:$activityComposeVersion"
     implementation "androidx.compose.ui:ui-tooling-preview:$toolingVersion"
     implementation "androidx.compose.ui:ui-tooling:$toolingVersion"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    implementation "com.google.code.gson:gson:$gson"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.google.code.gson:gson:$gsonVersion"
 
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModel"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModelVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
+
+    implementation "androidx.compose.runtime:runtime-livedata:$composeVersion"
+
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    implementation "androidx.core:core-ktx:1.10.1"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    implementation "androidx.activity:activity-ktx:1.8.0-alpha06"
+    implementation "androidx.navigation:navigation-compose:2.7.0-beta02"
 }

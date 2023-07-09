@@ -1,9 +1,12 @@
 package com.alpha.stoki.model
 
-data class StockGroupData(
-    val symbol: String,
+data class IndiceData(
+    val ticker: String,
     val name: String,
-    val group: List<Stock>
+    val market: String,
+    val locale: String,
+    val active: Boolean,
+    val sourceFeed: String
 )
 
 data class Stock(
