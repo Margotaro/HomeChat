@@ -4,14 +4,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.alpha.stoki.core.AppState
 import androidx.navigation.compose.NavHost
-
+import com.alpha.stoki.navigation.destinations.bookmarksScreen
+import com.alpha.stoki.navigation.destinations.discoverScreen
+import com.alpha.stoki.navigation.destinations.generalDestination
+import com.alpha.stoki.navigation.destinations.generalScreen
 
 @Composable
-fun NiaNavHost(
+fun StokiNavHost(
     appState: AppState,
-    onShowSnackbar: suspend (String, String?) -> Boolean,
     modifier: Modifier = Modifier,
-    startDestination: String = forYouNavigationRoute,
+    startDestination: String = generalDestination,
 ) {
     val navController = appState.navController
     NavHost(
@@ -19,27 +21,8 @@ fun NiaNavHost(
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        // TODO: handle topic clicks from each top level destination
-        forYouScreen(onTopicClick = {})
-        bookmarksScreen(
-            onTopicClick = navController::navigateToTopic,
-            onShowSnackbar = onShowSnackbar,
-        )
-        searchScreen(
-            onBackClick = navController::popBackStack,
-            onInterestsClick = { appState.navigateToTopLevelDestination(INTERESTS) },
-            onTopicClick = navController::navigateToTopic,
-        )
-        interestsGraph(
-            onTopicClick = { topicId ->
-                navController.navigateToTopic(topicId)
-            },
-            nestedGraphs = {
-                topicScreen(
-                    onBackClick = navController::popBackStack,
-                    onTopicClick = {},
-                )
-            },
-        )
+        generalScreen()
+        bookmarksScreen()
+        discoverScreen()
     }
 }

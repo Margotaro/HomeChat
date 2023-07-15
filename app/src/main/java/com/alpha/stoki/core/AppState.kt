@@ -12,6 +12,9 @@ import kotlinx.coroutines.CoroutineScope
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.alpha.stoki.navigation.destinations.TopLevelDestination
+import com.alpha.stoki.navigation.destinations.navigateToBookmarks
+import com.alpha.stoki.navigation.destinations.navigateToDiscover
+import com.alpha.stoki.navigation.destinations.navigateToGeneral
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 
@@ -43,9 +46,9 @@ class AppState(
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
-            forYouNavigationRoute -> FOR_YOU
-            bookmarksRoute -> BOOKMARKS
-            interestsRoute -> INTERESTS
+            forYouNavigationRoute -> TopLevelDestination.GENERAL
+            bookmarksRoute -> TopLevelDestination.BOOKMARKS
+            interestsRoute -> TopLevelDestination.DISCOVER
             else -> null
         }
     /**
@@ -94,14 +97,10 @@ class AppState(
             }
 
             when (topLevelDestination) {
-                FOR_YOU -> navController.navigateToForYou(topLevelNavOptions)
-                BOOKMARKS -> navController.navigateToBookmarks(topLevelNavOptions)
-                INTERESTS -> navController.navigateToInterestsGraph(topLevelNavOptions)
+                TopLevelDestination.GENERAL -> navController.navigateToGeneral(topLevelNavOptions)
+                TopLevelDestination.DISCOVER -> navController.navigateToDiscover(topLevelNavOptions)
+                TopLevelDestination.BOOKMARKS -> navController.navigateToBookmarks(topLevelNavOptions)
             }
         }
-    }
-
-    fun navigateToSearch() {
-        navController.navigateToSearch()
     }
 }
