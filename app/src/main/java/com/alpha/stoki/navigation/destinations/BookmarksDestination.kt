@@ -4,15 +4,16 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.alpha.stoki.core.reusable_components.BookmarksRoute
 
-const val bookmarksDestination = "bookmarks"
+const val bookmarksDestinationRoute = "bookmarks"
 
 fun NavController.navigateToBookmarks(navOptions: NavOptions? = null) {
-    this.navigate(bookmarksDestination, navOptions)
+    this.navigate(bookmarksDestinationRoute, navOptions)
 }
 
 fun NavGraphBuilder.bookmarksScreen() {
-    composable(route = generalDestination) {
-        BookmarksRoute()
+    composable(route = generalDestinationRoute) {
+        BookmarksRoute({})
     }
 }

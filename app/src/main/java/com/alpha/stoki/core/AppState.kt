@@ -12,33 +12,33 @@ import kotlinx.coroutines.CoroutineScope
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.alpha.stoki.navigation.destinations.TopLevelDestination
+import com.alpha.stoki.navigation.destinations.bookmarksDestinationRoute
+import com.alpha.stoki.navigation.destinations.discoverDestinationRoute
+import com.alpha.stoki.navigation.destinations.generalDestinationRoute
 import com.alpha.stoki.navigation.destinations.navigateToBookmarks
 import com.alpha.stoki.navigation.destinations.navigateToDiscover
 import com.alpha.stoki.navigation.destinations.navigateToGeneral
+import androidx.tracing.trace
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 
 @Composable
 fun rememberAppState(
-    coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
 ): AppState {
     return remember(
-        navController,
-        coroutineScope,
+        navController
     ) {
         AppState(
-            navController,
-            coroutineScope,
+            navController
         )
     }
 }
 
-
 @Stable
 class AppState(
-    val navController: NavHostController,
-    coroutineScope: CoroutineScope,
+    val navController: NavHostController
 ) {
     val currentDestination: NavDestination?
         @Composable get() = navController
@@ -46,40 +46,13 @@ class AppState(
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
-            forYouNavigationRoute -> TopLevelDestination.GENERAL
-            bookmarksRoute -> TopLevelDestination.BOOKMARKS
-            interestsRoute -> TopLevelDestination.DISCOVER
+            generalDestinationRoute -> TopLevelDestination.GENERAL
+            bookmarksDestinationRoute -> TopLevelDestination.BOOKMARKS
+            discoverDestinationRoute -> TopLevelDestination.DISCOVER
             else -> null
         }
-    /**
-     * Map of top level destinations to be used in the TopBar, BottomBar and NavRail. The key is the
-     * route.
-     */
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.values().asList()
 
-    /**
-     * The top level destinations that have unread news resources.
-     */
-    val topLevelDestinationsWithUnreadResources: StateFlow<Set<TopLevelDestination>> =
-        userNewsResourceRepository.observeAllForFollowedTopics()
-            .combine(userNewsResourceRepository.observeAllBookmarked()) { forYouNewsResources, bookmarkedNewsResources ->
-                setOfNotNull(
-                    FOR_YOU.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
-                    BOOKMARKS.takeIf { bookmarkedNewsResources.any { !it.hasBeenViewed } },
-                )
-            }.stateIn(
-                coroutineScope,
-                SharingStarted.WhileSubscribed(5_000),
-                initialValue = emptySet(),
-            )
-
-    /**
-     * UI logic for navigating to a top level destination in the app. Top level destinations have
-     * only one copy of the destination of the back stack, and save and restore state whenever you
-     * navigate to and from it.
-     *
-     * @param topLevelDestination: The destination the app needs to navigate to.
-     */
     fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
         trace("Navigation: ${topLevelDestination.name}") {
             val topLevelNavOptions = navOptions {

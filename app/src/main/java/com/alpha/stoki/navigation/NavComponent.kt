@@ -19,17 +19,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 
 @Composable
-private fun StokiNavBar(
+fun StokiNavBar(
     destinations: List<TopLevelDestination>,
     onNavigateToDestination: (TopLevelDestination) -> Unit,
-    destinationsWithUnreadResources: Set<TopLevelDestination>,
     currentDestination: NavDestination?,
     modifier: Modifier = Modifier,
 ) {
     NavigationBar(modifier = modifier) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
-            val hasUnread = destinationsWithUnreadResources.contains(destination)
             NavigationDrawerItem(
                 selected = selected,
                 onClick = { onNavigateToDestination(destination) },
@@ -40,30 +38,11 @@ private fun StokiNavBar(
                     )
                 },
                 label = { Text(stringResource(destination.iconTextId)) },
-                modifier = if (hasUnread) Modifier.notificationDot() else Modifier,
             )
         }
     }
 }
 
-private fun Modifier.notificationDot(): Modifier =
-    composed {
-        val tertiaryColor = MaterialTheme.colorScheme.tertiary
-        drawWithContent {
-            drawContent()
-            drawCircle(
-                tertiaryColor,
-                radius = 5.dp.toPx(),
-                // This is based on the dimensions of the NavigationBar's "indicator pill";
-                // however, its parameters are private, so we must depend on them implicitly
-                // (NavigationBarTokens.ActiveIndicatorWidth = 64.dp)
-                center = center + Offset(
-                    64.dp.toPx() * .45f,
-                    32.dp.toPx() * -.45f - 6.dp.toPx(),
-                ),
-            )
-        }
-    }
 private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
     this?.hierarchy?.any {
         it.route?.contains(destination.name, true) ?: false

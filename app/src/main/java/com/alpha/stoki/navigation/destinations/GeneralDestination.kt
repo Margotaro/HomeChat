@@ -3,20 +3,18 @@ package com.alpha.stoki.navigation.destinations
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import androidx.navigation.navDeepLink
+import com.alpha.stoki.core.reusable_components.GeneralRoute
 
 
-const val generalDestination = "general"
+const val generalDestinationRoute = "general"
 
 fun NavController.navigateToGeneral(navOptions: NavOptions? = null) {
-    this.navigate(generalDestination, navOptions)
+    this.navigate(generalDestinationRoute, navOptions)
 }
 
 fun NavGraphBuilder.generalScreen() {
-    composable(route = generalDestination) {
+    composable(route = generalDestinationRoute) {
         GeneralRoute()
     }
 }

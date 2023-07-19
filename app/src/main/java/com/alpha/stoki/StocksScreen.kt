@@ -23,7 +23,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 internal fun MainStockIndicesFeed(
     modifier: Modifier = Modifier,
     viewModel: IndicesViewModel = viewModel(),
-    feed: List<IndiceData> = mockStockGroupCardDataList
 ) {
     val list by viewModel.indices.observeAsState()
     list?.let { strongList ->

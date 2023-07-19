@@ -4,16 +4,17 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.alpha.stoki.core.reusable_components.DiscoverRoute
 
 
-const val discoverRoute = "discover"
+const val discoverDestinationRoute = "discover"
 
 fun NavController.navigateToDiscover(navOptions: NavOptions? = null) {
-    this.navigate(discoverRoute, navOptions)
+    this.navigate(discoverDestinationRoute, navOptions)
 }
 
 fun NavGraphBuilder.discoverScreen() {
-    composable(route = discoverRoute) {
+    composable(route = discoverDestinationRoute) {
         DiscoverRoute()
     }
 }
