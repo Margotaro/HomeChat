@@ -22,7 +22,7 @@ fun StokiNavHost(
         modifier = modifier,
     ) {
         generalScreen()
-        bookmarksScreen()
         discoverScreen()
+        bookmarksScreen()
     }
 }

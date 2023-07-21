@@ -1,5 +1,4 @@
 package com.alpha.stoki.network
-import com.alpha.stoki.data.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

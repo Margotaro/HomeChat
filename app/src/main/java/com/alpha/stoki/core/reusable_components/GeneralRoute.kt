@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+//import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alpha.stoki.MainStockIndicesFeed
 import com.alpha.stoki.viewmodel.GeneralViewModel
 import com.alpha.stoki.viewmodel.IndicesViewModel
@@ -16,7 +16,7 @@ internal fun GeneralRoute(
     viewModel: GeneralViewModel = hiltViewModel(),
     indicesViewModel: IndicesViewModel = hiltViewModel(),
 ) {
-    val generalState by viewModel.generalState.collectAsStateWithLifecycle()
+    //val generalState by viewModel.generalState.collectAsStateWithLifecycle()
     GeneralScreen(
         modifier = modifier,
         indicesViewModel = indicesViewModel

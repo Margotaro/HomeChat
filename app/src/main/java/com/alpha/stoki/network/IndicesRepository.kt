@@ -1,6 +1,5 @@
 package com.alpha.stoki.network
 
-import com.alpha.stoki.model.IndiceData
 import com.alpha.stoki.network.gson_objects.IndiceResponse
 import retrofit2.http.Query
 

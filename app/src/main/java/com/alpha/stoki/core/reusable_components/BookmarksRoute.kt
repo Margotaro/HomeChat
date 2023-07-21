@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.alpha.stoki.viewmodel.BookmarksViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.compose.runtime.getValue
+//import androidx.lifecycle.compose.collectAsStateWithLifecycle
+//import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
-import com.alpha.stoki.viewmodel.BookmarksUiState
+//import com.alpha.stoki.viewmodel.BookmarksUiState
 
 
 @Composable
@@ -21,9 +21,9 @@ internal fun BookmarksRoute(
     modifier: Modifier = Modifier,
     viewModel: BookmarksViewModel = hiltViewModel(),
 ) {
-    val bookmarksState by viewModel.bookmarksState.collectAsStateWithLifecycle()
+    //val bookmarksState by viewModel.bookmarksState.collectAsStateWithLifecycle()
     BookmarksScreen(
-        bookmarksState = bookmarksState,
+        //bookmarksState = bookmarksState,
         removeFromBookmarks = viewModel::removeFromSavedResources,
         onBookmarkClick = onBookmarkClick,
         modifier = modifier,
@@ -32,7 +32,7 @@ internal fun BookmarksRoute(
 
 @Composable
 fun BookmarksScreen(
-    bookmarksState: BookmarksUiState,
+    //bookmarksState: BookmarksUiState,
     removeFromBookmarks: (String) -> Unit,
     onBookmarkClick: (String) -> Unit,
     modifier: Modifier = Modifier,

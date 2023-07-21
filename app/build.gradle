@@ -46,9 +46,9 @@ ext {
     retrofitVersion = "2.9.0"
     gsonVersion = "2.9.0"
     //ViewModel
-    viewModelVersion = "2.5.1"
+    viewModelVersion = "2.6.1"
     //Hilt
-    hiltVersion = "2.46.1"
+    hiltVersion = "2.47"
     //LiveData
     liveDataVersion = "1.6.0-alpha01"
     //Tracing
@@ -66,8 +66,8 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.8.0-alpha06"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModelVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
-    implementation "androidx.navigation:navigation-compose:2.7.0-beta02"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$viewModelVersion"
+    implementation "androidx.navigation:navigation-compose:2.6.0"
     implementation "androidx.tracing:tracing-ktx:$tracingVersion"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

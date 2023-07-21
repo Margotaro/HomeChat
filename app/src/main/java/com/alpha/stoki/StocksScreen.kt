@@ -2,7 +2,7 @@ package com.alpha.stoki
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.runtime.Composable
-import com.alpha.stoki.model.IndiceData
+import com.alpha.stoki.network.PolygonIndexData
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -46,7 +46,7 @@ internal fun StockIndice(
     modifier: Modifier = Modifier
         .fillMaxSize()
         .background(Color(0xFFDBECF4), RoundedCornerShape(12.dp)),
-    cardData: IndiceData
+    cardData: PolygonIndexData
 ) {
     Box(modifier = modifier.clickable {
         

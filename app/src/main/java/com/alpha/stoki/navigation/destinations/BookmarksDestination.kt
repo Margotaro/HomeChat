@@ -13,7 +13,7 @@ fun NavController.navigateToBookmarks(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.bookmarksScreen() {
-    composable(route = generalDestinationRoute) {
+    composable(route = bookmarksDestinationRoute) {
         BookmarksRoute({})
     }
 }

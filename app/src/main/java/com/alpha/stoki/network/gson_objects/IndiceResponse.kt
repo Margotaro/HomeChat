@@ -1,5 +1,5 @@
 package com.alpha.stoki.network.gson_objects
 
-import com.alpha.stoki.model.IndiceData
+import com.alpha.stoki.network.PolygonIndexData
 
-data class IndiceResponse(val results: List<IndiceData>)
+data class IndiceResponse(val results: List<PolygonIndexData>)

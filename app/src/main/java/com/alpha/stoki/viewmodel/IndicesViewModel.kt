@@ -3,16 +3,16 @@ package com.alpha.stoki.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alpha.stoki.model.IndiceData
+import com.alpha.stoki.network.PolygonIndexData
 import com.alpha.stoki.network.IndicesRepository
 import kotlinx.coroutines.launch
-import com.alpha.stoki.data.API_KEY
+import com.alpha.stoki.network.API_KEY
 
 
 class IndicesViewModel : ViewModel() {
-    private val _indices: MutableLiveData<List<IndiceData>> = MutableLiveData()
+    private val _indices: MutableLiveData<List<PolygonIndexData>> = MutableLiveData()
     private val repository: IndicesRepository = IndicesRepository()
-    val indices: MutableLiveData<List<IndiceData>>
+    val indices: MutableLiveData<List<PolygonIndexData>>
         get() {
             if(!_indices.isInitialized)
                 updateIndices()
