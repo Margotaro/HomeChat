@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.alpha.stoki.core.reusable_components.BookmarksRoute
+import com.alpha.stoki.core.reusable_components.navigation.BookmarksRoute
 
 const val bookmarksDestinationRoute = "bookmarks"
 

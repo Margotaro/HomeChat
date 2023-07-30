@@ -1,4 +1,4 @@
-package com.alpha.stoki.network
+package com.alpha.stoki.network.gson_objects
 
 data class PolygonIndexData(
     val ticker: String,

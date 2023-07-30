@@ -1,4 +1,4 @@
-package com.alpha.stoki.core
+package com.alpha.stoki.core.state
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -16,23 +16,22 @@ import com.alpha.stoki.navigation.destinations.generalDestinationRoute
 import com.alpha.stoki.navigation.destinations.navigateToBookmarks
 import com.alpha.stoki.navigation.destinations.navigateToDiscover
 import com.alpha.stoki.navigation.destinations.navigateToGeneral
-import androidx.tracing.trace
 
 @Composable
-fun rememberAppState(
+fun rememberNavState(
     navController: NavHostController = rememberNavController(),
-): AppState {
+): NavigationState {
     return remember(
         navController
     ) {
-        AppState(
+        NavigationState(
             navController
         )
     }
 }
 
 @Stable
-class AppState(
+class NavigationState(
     val navController: NavHostController
 ) {
     val currentDestination: NavDestination?

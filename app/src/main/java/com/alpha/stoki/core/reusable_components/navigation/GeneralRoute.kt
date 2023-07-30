@@ -1,35 +1,33 @@
-package com.alpha.stoki.core.reusable_components
+package com.alpha.stoki.core.reusable_components.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 //import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alpha.stoki.MainStockIndicesFeed
 import com.alpha.stoki.viewmodel.GeneralViewModel
-import com.alpha.stoki.viewmodel.IndicesViewModel
-import androidx.activity.viewModels
+import com.alpha.stoki.viewmodel.TickerScreenViewModel
 
 @Composable
 internal fun GeneralRoute(
     modifier: Modifier = Modifier,
     viewModel: GeneralViewModel = hiltViewModel(),
-    indicesViewModel: IndicesViewModel = hiltViewModel(),
+    tickerScreenViewModel: TickerScreenViewModel = hiltViewModel(),
 ) {
     //val generalState by viewModel.generalState.collectAsStateWithLifecycle()
     GeneralScreen(
         modifier = modifier,
-        indicesViewModel = indicesViewModel
+        tickerScreenViewModel = tickerScreenViewModel
     )
 }
 
 @Composable
 fun GeneralScreen(
     modifier: Modifier = Modifier,
-    indicesViewModel: IndicesViewModel
+    tickerScreenViewModel: TickerScreenViewModel
 ) {
     MainStockIndicesFeed(
         modifier = Modifier,
-        viewModel = indicesViewModel
+        viewModel = tickerScreenViewModel
     )
 }

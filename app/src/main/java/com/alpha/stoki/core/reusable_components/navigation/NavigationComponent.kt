@@ -1,4 +1,4 @@
-package com.alpha.stoki.core.reusable_components
+package com.alpha.stoki.core.reusable_components.navigation
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.RowScope

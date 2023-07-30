@@ -2,7 +2,7 @@ package com.alpha.stoki.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.alpha.stoki.core.AppState
+import com.alpha.stoki.core.state.NavigationState
 import androidx.navigation.compose.NavHost
 import com.alpha.stoki.navigation.destinations.bookmarksScreen
 import com.alpha.stoki.navigation.destinations.discoverScreen
@@ -11,11 +11,11 @@ import com.alpha.stoki.navigation.destinations.generalScreen
 
 @Composable
 fun StokiNavHost(
-    appState: AppState,
+    navState: NavigationState,
     modifier: Modifier = Modifier,
     startDestination: String = generalDestinationRoute,
 ) {
-    val navController = appState.navController
+    val navController = navState.navController
     NavHost(
         navController = navController,
         startDestination = startDestination,

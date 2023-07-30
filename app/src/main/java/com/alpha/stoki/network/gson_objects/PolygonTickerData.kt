@@ -1,6 +1,14 @@
 package com.alpha.stoki.network.gson_objects
 
-data class Ticker(
+data class PolygonTickerResponse(
+    val count: Int,
+    val next_url: String,
+    val request_id: String,
+    val results: List<PolygonTickerData>,
+    val status: String
+)
+
+data class PolygonTickerData(
     val active: Boolean,
     val cik: String,
     val composite_figi: String,

@@ -1,6 +1,6 @@
 package com.alpha.stoki
 
-import com.alpha.stoki.network.PolygonIndexData
+import com.alpha.stoki.network.gson_objects.PolygonIndexData
 
 val mockStockGroupCardDataList: List<PolygonIndexData> = listOf(
     PolygonIndexData("I:A1BSC", "Dow Jones Americas Basic Materials Index", "indices", "us", true, "CMEMarketDataPlatformDowJones"),
